@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "DOCKB - Comment Hider",
     "version": "1.0",
-    "description": "Hides elements with the class 'card-footer' on a 'specific URL'.",
+    "description": "Hides elements with the class 'card-footer' on 'https://dock-b.com/*'.",
     "permissions": [
       "activeTab",
       "scripting"
