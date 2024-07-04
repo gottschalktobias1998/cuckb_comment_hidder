@@ -1,0 +1,4 @@
+- Select all <P>
+- Remove <P> with content of "&nbsp"
+- Darkmode
+- Popup Styling
