@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOCKB - Comment Hider</title>
+    <style>
+        body {
+            min-width: 200px;
+            font-family: Arial, sans-serif;
+            padding: 10px;
+        }
+        .option {
+            margin: 10px 0;
+        }
+        label {
+            display: block;
+        }
+        .slider {
+            width: 100%;
+        }
+        .status {
+            display: inline-block;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOCKB - Comment Hider</h1>
+    <div class="option">
+        <label for="hideCardFooter">Hide elements with class "card-footer"</label>
+        <input type="range" id="hideCardFooter" class="slider" min="0" max="1" step="1" />
+        <span id="hideCardFooterStatus" class="status"></span>
+    </div>
+    <div class="option">
+        <label for="hideImgFluid">Hide elements with class "img-fluid img-thumbnail"</label>
+        <input type="range" id="hideImgFluid" class="slider" min="0" max="1" step="1" />
+        <span id="hideImgFluidStatus" class="status"></span>
+    </div>
+    <button id="save">Save</button>
+    <script>
+        // Load saved settings and update the UI
+        function loadSettings() {
+            chrome.storage.sync.get({
+                hideCardFooter: true,
+                hideImgFluid: true
+            }, function(items) {
+                document.getElementById('hideCardFooter').value = items.hideCardFooter ? 1 : 0;
+                document.getElementById('hideImgFluid').value = items.hideImgFluid ? 1 : 0;
+                updateStatus();
+            });
+        }
+
+        // Update status display
+        function updateStatus() {
+            document.getElementById('hideCardFooterStatus').textContent = document.getElementById('hideCardFooter').value == 1 ? 'True' : 'False';
+            document.getElementById('hideImgFluidStatus').textContent = document.getElementById('hideImgFluid').value == 1 ? 'True' : 'False';
+        }
+
+        // Save settings and notify content script to reapply them
+        document.getElementById('save').addEventListener('click', function() {
+            const hideCardFooter = document.getElementById('hideCardFooter').value == 1;
+            const hideImgFluid = document.getElementById('hideImgFluid').value == 1;
+            chrome.storage.sync.set({
+                hideCardFooter: hideCardFooter,
+                hideImgFluid: hideImgFluid
+            }, function() {
+                // Notify content script to reapply settings
+                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { action: 'reapplySettings' });
+                });
+                alert('Settings saved');
+            });
+        });
+
+        // Load settings and update status when the popup is opened
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSettings();
+            document.querySelectorAll('.slider').forEach(slider => {
+                slider.addEventListener('input', updateStatus);
+            });
+        });
+    </script>
+</body>
+</html>

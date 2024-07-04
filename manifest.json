@@ -2,10 +2,11 @@
     "manifest_version": 3,
     "name": "DOCKB - Comment Hider",
     "version": "1.0",
-    "description": "Hides elements with the class 'card-footer' on 'https://dock-b.com/*'.",
+    "description": "Hides elements with specified classes on 'https://dock-b.com/*'.",
     "permissions": [
       "activeTab",
-      "scripting"
+      "scripting",
+      "storage"
     ],
     "host_permissions": [
       "https://dock-b.com/*"
@@ -18,8 +19,16 @@
     ],
     "icons": {
       "16": "16x16.png",
-      "48": "48x48.png",
-      "128": "128x128.png"
+      "48": "16x16.png",
+      "128": "16x16.png"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "16x16.png",
+        "48": "16x16.png",
+        "128": "16x16.png"
+      }
     }
   }
   
