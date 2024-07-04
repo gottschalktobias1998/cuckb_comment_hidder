@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "DOCKB - Comment Hider",
+    "version": "1.0",
+    "description": "Hides elements with the class 'card-footer' on a 'specific URL'.",
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "host_permissions": [
+      "https://dock-b.com/*"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["https://dock-b.com/*"],
+        "js": ["hider.js"]
+      }
+    ]
+  }
+  
