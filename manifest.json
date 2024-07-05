@@ -13,7 +13,7 @@
     ],
     "content_scripts": [
       {
-        "matches": ["https://dock-b.com/"],
+        "matches": ["https://dock-b.com/*"],
         "js": ["hider.js"]
       }
     ],
