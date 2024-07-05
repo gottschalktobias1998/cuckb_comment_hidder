@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "DOCKB - Comment Hider",
+    "name": "CUCKB - Comment Hider",
     "version": "1.0",
-    "description": "Hides elements with specified classes on 'https://dock-b.com/*'.",
+    "description": "Hides elements with specified classes on 'https://dock-b.com/'.",
     "permissions": [
       "activeTab",
       "scripting",
@@ -13,7 +13,7 @@
     ],
     "content_scripts": [
       {
-        "matches": ["https://dock-b.com/*"],
+        "matches": ["https://dock-b.com/"],
         "js": ["hider.js"]
       }
     ],
