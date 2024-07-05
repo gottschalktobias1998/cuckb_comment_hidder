@@ -14,7 +14,7 @@
     "content_scripts": [
       {
         "matches": ["https://dock-b.com/*"],
-        "js": ["hider.js"]
+        "js": ["hidder.js"]
       }
     ],
     "icons": {
